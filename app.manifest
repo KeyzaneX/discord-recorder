@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+  <assemblyIdentity version="1.0.0.0" name="DiscordVocalOverlay" processorArchitecture="*" />
+  <description>Discord Vocal Overlay - Record voice messages and drag them into Discord</description>
+  
+  <!-- Application Icon - Add an .ico file named 'app.ico' to the project root directory -->
+  <icon>app.png</icon>
+  
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v3">
+    <security>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <!-- No special privileges required for this app -->
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+  
+  <!-- Compatibility with Windows 10 and 11 -->
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- Windows 10 and 11 -->
+      <supportedOS Id="{8e0f7a1e-b843-4484-b5e3a6}" />
+    </application>
+  </compatibility>
+  
+  <!-- Disable DPI awareness for better scaling on high-DPI displays -->
+  <application xmlns="urn:schemas-microsoft-com:asm.v3">
+    <windowsSettings>
+      <dpiAware>true</dpiAware>
+      <longPathAware>true</longPathAware>
+    </windowsSettings>
+  </application>
+</assembly>

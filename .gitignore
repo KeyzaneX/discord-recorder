@@ -1,0 +1,23 @@
+# Build outputs
+bin/
+obj/
+
+# Visual Studio / VS Code
+.vs/
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS artifacts
+Thumbs.db
+Desktop.ini
+
+# Logs
+*.log
+
+# Local tools / metadata
+.kilocode/

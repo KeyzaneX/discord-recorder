@@ -1,0 +1,40 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish
+        run: dotnet publish -c Release -r win-x64 --self-contained true /p:PublishSingleFile=true
+
+      - name: Package
+        shell: pwsh
+        run: |
+          $publishDir = "bin/Release/net8.0-windows/win-x64/publish"
+          if (-not (Test-Path $publishDir)) {
+            throw "Publish output not found: $publishDir"
+          }
+          $assetName = "DiscordVocalOverlay-${{ github.ref_name }}-win-x64.zip"
+          Compress-Archive -Path "$publishDir/*" -DestinationPath $assetName -Force
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: DiscordVocalOverlay-*.zip

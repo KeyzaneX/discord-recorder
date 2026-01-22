@@ -298,22 +298,6 @@ cd bin\Release\net8.0-windows\win-x64
 Compress-Archive -Path publish\* -DestinationPath DiscordVocalOverlay-win-x64.zip
 ```
 
-**Release steps**
-1. Create a new GitHub Release (tag e.g. `v1.0.0`).
-2. Upload `DiscordVocalOverlay-win-x64.zip` as a release asset.
-3. Add short release notes (features, fixes, known issues).
-
-### Automated GitHub Release (Recommended)
-This repo includes a GitHub Actions workflow that builds and publishes the zip automatically when you push a version tag.
-
-```powershell
-# Create and push a version tag
-git tag v1.0.0
-git push origin v1.0.0
-```
-
-After the workflow finishes, the GitHub Release page will contain the zip file for users to download.
-
 ### Install / Run (End Users)
 1. Download `DiscordVocalOverlay-win-x64.zip` from the latest GitHub Release.
 2. Extract the zip anywhere (for example: `C:\Apps\DiscordVocalOverlay`).
@@ -343,8 +327,6 @@ After the workflow finishes, the GitHub Release page will contain the zip file f
 
 ```
 discord-recorder/
-├── .kilocode/
-│   └── README_AGENT.md          # Project constraints and requirements
 ├── ViewModels/
 │   ├── MainViewModel.cs          # Main application logic and state machine
 │   ├── SettingsViewModel.cs       # Settings dialog logic
@@ -483,3 +465,4 @@ This is a personal project for the user's specific needs. If you wish to contrib
   - Settings dialog
   - Device selection
   - Copy to clipboard
+

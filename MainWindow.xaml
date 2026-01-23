@@ -4,7 +4,7 @@
         xmlns:ui="http://schemas.modernwpf.com/2019"
         Title="DiscordVocalOverlay"
         Icon="app.ico"
-        Width="500" Height="80"
+        Width="700" Height="80"
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent"
@@ -106,7 +106,7 @@
             </Border>
 
             <!-- Button Panel -->
-            <Grid Grid.Row="1" Margin="8,8,8,8">
+            <Grid Grid.Row="1" Margin="12,8,12,8">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -114,26 +114,27 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Left: State Icon + Audio Level Meter -->
-                <StackPanel Grid.Column="0" 
+                <StackPanel Grid.Column="0"
                             Orientation="Horizontal"
                             HorizontalAlignment="Center"
-                            VerticalAlignment="Center">
-                    
+                            VerticalAlignment="Center"
+                            Margin="0,0,12,0">
+
                     <!-- State Icon -->
                     <TextBlock x:Name="StateIcon"
                                Text="🎤"
                                FontSize="24"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
-                               Margin="0,0,8,0"/>
-                    
+                               Margin="0,0,12,0"/>
+
                     <!-- Audio Level Meter (only visible during recording) -->
                     <Border x:Name="AudioLevelBorder"
                             Width="6"
                             Height="40"
                             Background="#1E1F22"
                             CornerRadius="3"
-                            Margin="4,0,8,0"
+                            Margin="4,0,0,0"
                             VerticalAlignment="Center">
                         <Border x:Name="AudioLevelBar"
                                 Width="6"
@@ -146,8 +147,8 @@
                 </StackPanel>
 
                 <!-- Center: Main Actions -->
-                <StackPanel Grid.Column="1" 
-                            Orientation="Horizontal" 
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center">
 
@@ -155,7 +156,9 @@
                     <Button x:Name="RecordButton"
                             Style="{StaticResource PrimaryButton}"
                             Command="{Binding RecordToggleCommand}"
-                            ToolTip="Start/Stop Recording">
+                            ToolTip="Start/Stop Recording"
+                            Padding="12,6"
+                            Margin="0,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="●" FontSize="10" Margin="0,0,4,0"/>
                             <TextBlock Text="Record"/>
@@ -166,7 +169,9 @@
                     <Button x:Name="PlayButton"
                             Style="{StaticResource PrimaryButton}"
                             Command="{Binding PlayToggleCommand}"
-                            ToolTip="Play/Stop Audio">
+                            ToolTip="Play/Stop Audio"
+                            Padding="12,6"
+                            Margin="6,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock x:Name="PlayButtonIcon" Text="▶" FontSize="10" Margin="0,0,4,0"/>
                             <TextBlock x:Name="PlayButtonText" Text="Play" FontSize="11" Margin="0,0,4,0"/>
@@ -177,7 +182,9 @@
                     <Button x:Name="DeleteButton"
                             Style="{StaticResource BaseButton}"
                             Command="{Binding DeleteCommand}"
-                            ToolTip="Delete Recording">
+                            ToolTip="Delete Recording"
+                            Padding="12,6"
+                            Margin="6,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="🗑" FontSize="12" Margin="0,0,4,0"/>
                             <TextBlock Text="Delete"/>
@@ -188,7 +195,9 @@
                     <Button x:Name="BackButton"
                             Style="{StaticResource BaseButton}"
                             Command="{Binding BackToIdleCommand}"
-                            ToolTip="Back to Record">
+                            ToolTip="Back to Record"
+                            Padding="12,6"
+                            Margin="6,0,6,0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="◀" FontSize="10" Margin="0,0,4,0"/>
                             <TextBlock Text="Back"/>
@@ -200,26 +209,39 @@
                             Style="{StaticResource BaseButton}"
                             Command="{Binding CopyFileCommand}"
                             ToolTip="Copy file to clipboard"
-                            Padding="8,4"
-                            Margin="8,0,0,0">
+                            Padding="12,6"
+                            Margin="6,0,0,0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="📋" FontSize="12" Margin="0,0,4,0"/>
-                            <TextBlock Text="Copy"/>
+                            <TextBlock x:Name="CopyButtonIcon" Text="📋" FontSize="12" Margin="0,0,4,0"/>
+                            <TextBlock x:Name="CopyButtonText" Text="Copy"/>
                         </StackPanel>
                     </Button>
+
+                    <!-- Copied text (appears briefly after copy) -->
+                    <TextBlock x:Name="CopiedText"
+                               Text="copied"
+                               FontSize="10"
+                               Foreground="#5865F2"
+                               FontWeight="SemiBold"
+                               Opacity="0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Margin="12,0,0,0"/>
                 </StackPanel>
 
                 <!-- Right: Utility Buttons -->
-                <StackPanel Grid.Column="2" 
-                            Orientation="Horizontal" 
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal"
                             HorizontalAlignment="Right"
-                            VerticalAlignment="Center">
+                            VerticalAlignment="Center"
+                            Margin="12,0,0,0">
 
                     <!-- Settings Button -->
                     <Button Style="{StaticResource BaseButton}"
                             Command="{Binding ShowSettingsCommand}"
                             ToolTip="Settings"
-                            Padding="6,4">
+                            Padding="8,4"
+                            Margin="0,0,2,0">
                         <TextBlock Text="⚙" FontSize="14"/>
                     </Button>
 
@@ -227,7 +249,8 @@
                     <Button Style="{StaticResource BaseButton}"
                             Command="{Binding ShowDeviceSelectionCommand}"
                             ToolTip="Select Microphone"
-                            Padding="6,4">
+                            Padding="8,4"
+                            Margin="2,0,2,0">
                         <TextBlock Text="🎙" FontSize="14"/>
                     </Button>
 
@@ -235,7 +258,8 @@
                     <Button Style="{StaticResource BaseButton}"
                             Command="{Binding OpenFolderCommand}"
                             ToolTip="Open Recordings Folder"
-                            Padding="6,4">
+                            Padding="8,4"
+                            Margin="2,0,2,0">
                         <TextBlock Text="📂" FontSize="14"/>
                     </Button>
 
@@ -244,7 +268,8 @@
                             Style="{StaticResource BaseButton}"
                             Command="{Binding CloseCommand}"
                             ToolTip="Close"
-                            Padding="6,4">
+                            Padding="8,4"
+                            Margin="2,0,0,0">
                         <TextBlock Text="✕" FontSize="12" Foreground="#ED4245"/>
                     </Button>
                 </StackPanel>

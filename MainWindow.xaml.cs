@@ -273,14 +273,32 @@ public partial class MainWindow : Window
             fileDropList.Add(filePath);
             System.Windows.Clipboard.SetFileDropList(fileDropList);
 
-            // Show notification
-            System.Windows.MessageBox.Show("File copied to clipboard!\n\nYou can now paste it in Discord (Ctrl+V).", "Copied to Clipboard", MessageBoxButton.OK, MessageBoxImage.Information);
+            // Show "copied" text with fade-out animation
+            ShowCopiedAnimation();
         }
         catch (Exception ex)
         {
             System.Diagnostics.Debug.WriteLine($"Failed to copy file to clipboard: {ex.Message}");
             System.Windows.MessageBox.Show($"Failed to copy file to clipboard: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+    }
+
+    private void ShowCopiedAnimation()
+    {
+        // Make the "copied" text visible with opacity 1
+        CopiedText.Opacity = 1;
+
+        // Fade out over 1.5 seconds
+        var fadeOutAnimation = new System.Windows.Media.Animation.DoubleAnimation
+        {
+            From = 1,
+            To = 0,
+            Duration = new System.Windows.Duration(System.TimeSpan.FromMilliseconds(1500)),
+            BeginTime = System.TimeSpan.FromMilliseconds(0)
+        };
+
+        // Start the animation
+        CopiedText.BeginAnimation(System.Windows.UIElement.OpacityProperty, fadeOutAnimation);
     }
 
     private void OnRequestShowDeviceSelection()
